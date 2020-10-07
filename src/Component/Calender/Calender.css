@@ -1,0 +1,42 @@
+.fc td {
+    border-color: #495561;
+  }
+  
+  .fc-today {
+    background: #495561 !important;
+  }
+  
+  .fc-button {
+    background: #323b44;
+    border: none;
+    color: #dee2e6;
+    text-transform: capitalize;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 3px;
+    margin: 0 3px;
+    padding: 6px 12px;
+    height: auto;
+  }
+  
+  .fc-day-header {
+    color: #a8b5c3;
+  }
+  
+  button:focus {
+    outline: 0;
+  }
+  
+  .fc-button-active {
+    background-color: #3bafda !important;
+    color: #fff;
+    text-shadow: none;
+  }
+  
+  .fc-today-button {
+    background-color: #3bafda !important;
+  }
+  
+  .fc-toolbar h2 {
+    font-size: 20px;
+  }
