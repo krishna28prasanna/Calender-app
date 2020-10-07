@@ -3,8 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const EventForm = (props) =>{
-    console.log(props)
-    const {evetnName,inputChange,checkbox,onCheckboxChange,strtDate,endDate,onInputChange,handleChange,eventType,colors} = props
+    const {evetnName,inputChange,checkbox,onCheckboxChange,strtDate,endDate,onInputChange,handleChange,eventType,colors,color} = props
     return(
         <div>
             <form>
