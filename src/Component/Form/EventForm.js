@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const EventForm = (props) =>{
-    const {evetnName,inputChange,checkbox,onCheckboxChange,strtDate,endDate,onInputChange,handleChange,eventType,colors,color} = props
+    const {evetnName,inputChange,checkbox,onCheckboxChange,strtDate,endDate,onInputChange,handleChange,eventType,colors,color,colorObj} = props
     return(
         <div>
             <form>
@@ -39,7 +39,7 @@ const EventForm = (props) =>{
                 </div>
                 <div className="form-group">
                     <label htmlFor="eventColor">Choose Event Color</label>
-                    <select className="form-control" name="eventColor" onChange={handleChange}>
+                    <select className="form-control" name="eventColor" value={color} onChange={handleChange} style={{"backgroundColor":colorObj[color]}}>
                         <option>Select Color</option>
                         {colors.map((color,i)=>{
                             return <option key={i} value={color.toLowerCase()}>{color}</option>

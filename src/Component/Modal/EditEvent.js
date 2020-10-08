@@ -1,18 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EventModal from "./EventModal";
 import moment from "moment";
 import AppContext from "../../Context/App/AppContext"
-const AddEvent = (props) => {
+const EditEvent = (props) => {
   const appContext = useContext(AppContext)
-  const {addEvent,colorObj,events,colors} = appContext
+  const {selectedEvent,events,colorObj,colors,editSelectedEvent} = appContext
   const [evetnName, setEventName] = useState("");
   const [color, setColor] = useState("");
   const [checkbox, setCheckBox] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  // const colors = ["Primary", "Danger", "Success", "Info"];
-  
-  console.log('add events - ',events)
+  useEffect(()=>{
+      if(Object.keys(selectedEvent).length){
+          setEventName(selectedEvent.title)
+          setColor(selectedEvent.bgColor)
+          setCheckBox(selectedEvent.agree)
+          setStartDate(new Date(selectedEvent.start))
+          setEndDate(new Date(selectedEvent.end))
+      }
+  },[selectedEvent,events])
   const inputChange = (e) => {
     setEventName(e.target.value);
   };
@@ -34,19 +40,11 @@ const AddEvent = (props) => {
       setColor("");
     }
   };
-  const createEvent = () => {
-    const event = setEvent(events.length+1);
-    addEvent(event)
-    reset()
-    props.handleHideModal()
-  };
-  const reset = () => {
-    setEventName("");
-    setColor("");
-    setCheckBox(false);
-    setStartDate(new Date());
-    setEndDate(new Date());
-  };
+ const editEvent = () =>{
+     const event = setEvent(selectedEvent.id)
+     editSelectedEvent(event)
+     props.handleHideModal()
+ }
   const setEvent = (id) => {
     let start = moment(startDate).format();
     let end = moment(endDate).format();
@@ -66,7 +64,7 @@ const AddEvent = (props) => {
     <div>
       <EventModal
         show={props.show}
-        handleHideModal={props.handleHideModal}
+        handleHideModal={props.hideEditClick}
         evetnName={evetnName}
         inputChange={inputChange}
         checkbox={checkbox}
@@ -75,7 +73,7 @@ const AddEvent = (props) => {
         endDate={endDate}
         onInputChange={onInputChange}
         handleChange={handleChange}
-        eventType={createEvent}
+        eventType={editEvent}
         colors={colors}
         color={color}
         colorObj={colorObj}
@@ -83,4 +81,4 @@ const AddEvent = (props) => {
     </div>
   );
 };
-export default AddEvent;
+export default EditEvent;

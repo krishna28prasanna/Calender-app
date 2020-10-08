@@ -40,3 +40,6 @@
   .fc-toolbar h2 {
     font-size: 20px;
   }
+  .fc-content{
+    cursor: move;
+  }
